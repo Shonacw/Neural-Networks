@@ -34,7 +34,6 @@ Note E - Using Early stopping to avoid over or under-fitting. It will stop the
          epochs are specified using the patience parameter.
 Note F - Callback to save the "best" model so far to file 'best_cnn'. The file
          contents will be overwritten by each new better model.
-Note G - 
 """
 import numpy as np
 import keras
@@ -229,15 +228,6 @@ test_loss, test_acc = model.evaluate(x = Test_Img, y = Test_labels, verbose=0)
 
 print('Test accuracy: {:0.4f} \nTest loss: {:0.4f}'.
       format(test_acc, test_loss))
-
-"""
-there is room for quite a bit of tuning in order to improve performance such as:
-
-Change the way the images are transformed in the augmentation process.
-Change the architecture of our model by adding extra blocks, changing the kernel sizes, making it deeper, etc.
-Train multiple CNNs and make ensemble predictions.
-Use some of the extra data which can be found along with the original dataset.
-"""
 
 
 
