@@ -223,14 +223,28 @@ plt.title('Epochs vs. Training and Validation Loss')
 plt.show()
 
 #%%
-##Evaluate model on test data
+""" Step 5 """
 test_loss, test_acc = model.evaluate(x = Test_Img, y = Test_labels, verbose=0)
 
 print('Test accuracy: {:0.4f} \nTest loss: {:0.4f}'.
       format(test_acc, test_loss))
 
+""" Step 6 """
+##Extract label predictions and apply inverse transformation to the labels
+y_pred = model.predict(X_train)
 
+y_pred = lb.inverse_transform(y_pred, lb.classes_)
+y_train = lb.inverse_transform(y_train, lb.classes_)  
 
+##Plot the confusion matrix
+matrix = confusion_matrix(y_train, y_pred, labels=lb.classes_)
+
+fig, ax = plt.subplots(figsize=(14, 12))
+sns.heatmap(matrix, annot=True, cmap='Greens', fmt='d', ax=ax)
+plt.title('Confusion Matrix for training dataset')
+plt.xlabel('Predicted label')
+plt.ylabel('True label')
+plt.show()
 
 
 
